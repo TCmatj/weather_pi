@@ -25,3 +25,155 @@ DEBUG:waveshare_epd.epd3in52:e-Paper busy release
 DEBUG:waveshare_epd.epd3in52:Horizontal
 DEBUG:waveshare_epd.epd3in52:e-Paper busy
 DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+python: can't open file '/home/pi/Downloads/weather_pi/icon.py': [Errno 2] No such file or directory
+INFO:root:天气
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+nohup: ignoring input
+INFO:root:天气
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:schedule:Running job Job(interval=0.3, unit=minutes, do=main, args=(), kwargs={})
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.weather.com.cn:80
+DEBUG:urllib3.connectionpool:http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+INFO:root:init and Clear
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+DEBUG:waveshare_epd.epd3in52:Horizontal
+DEBUG:waveshare_epd.epd3in52:e-Paper busy
+DEBUG:waveshare_epd.epd3in52:e-Paper busy release
+nohup: ignoring input
+2022-10-04 17:44:46,597 - INFO - 天气
+2022-10-04 17:44:47,327 - DEBUG - Starting new HTTP connection (1): www.weather.com.cn:80
+2022-10-04 17:44:47,600 - DEBUG - http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+2022-10-04 17:44:48,489 - INFO - init and Clear
+2022-10-04 17:44:49,264 - DEBUG - e-Paper busy
+2022-10-04 17:44:50,276 - DEBUG - e-Paper busy release
+2022-10-04 17:44:50,593 - DEBUG - Horizontal
+2022-10-04 17:44:50,867 - DEBUG - e-Paper busy
+2022-10-04 17:44:51,881 - DEBUG - e-Paper busy release
+2022-10-04 17:45:52,087 - DEBUG - Running job Job(interval=1, unit=minutes, do=main, args=(), kwargs={})
+2022-10-04 17:45:52,150 - DEBUG - Starting new HTTP connection (1): www.weather.com.cn:80
+2022-10-04 17:45:52,275 - DEBUG - http://www.weather.com.cn:80 "GET /weather1d/101210101.shtml HTTP/1.1" 200 None
+2022-10-04 17:45:53,323 - INFO - init and Clear
+2022-10-04 17:45:54,098 - DEBUG - e-Paper busy
+2022-10-04 17:45:55,112 - DEBUG - e-Paper busy release
+2022-10-04 17:45:55,387 - DEBUG - Horizontal
+2022-10-04 17:45:55,724 - DEBUG - e-Paper busy
+2022-10-04 17:45:56,738 - DEBUG - e-Paper busy release
