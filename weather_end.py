@@ -111,12 +111,13 @@ try:
         draw = ImageDraw.Draw(Himage)   # 绘图声明:告诉你就在这个图上绘图
 
         ## 绘制图框
-        draw.rectangle((0,0,120,238),outline=0,width=2)
-        draw.line((0,60,120,60),width=2)
-        draw.line((0,120,120,120),width=2)
-        draw.line((0,180,120,180),width=2)
-        draw.line((0,240,120,240),width=2)
-        draw.line((60,0,60,240),width=2)
+        draw.rectangle((0,0,358,238),outline=0,width=2)
+        draw.line((0,60,120,60),width=1)
+        draw.line((0,120,120,120),width=1)
+        draw.line((0,180,120,180),width=1)
+        draw.line((0,240,120,240),width=1)
+        draw.line((60,0,60,240),width=1)
+        draw.line((120,0,120,240),width=1)
         for weather in data['weather']:
             if int(data['time'][i])>18 and (data['weather'][i] in ['晴','多云','少云','晴间多云']):
                 weather_id = weather_iconnum_night.get(weather)
@@ -147,15 +148,14 @@ try:
         Himage.paste(picture,(121,33))
 
         ## 绘制图框
-        draw.rectangle((320,32, 360,240), fill = 255, outline=0, width=1)
+        draw.line((358,0,358,240), fill=0, width=2) #图片有可能覆盖，补一条线
+        draw.rectangle((320,32, 357,237), fill = 255, outline=0, width=1)
         draw.line((120,32,320,32), fill=0, width=1)
         draw.line((320,100,360,100), fill=0, width=1)
         draw.line((320,125,360,125), fill=0, width=1)
         draw.line((320,200,360,200), fill=0, width=1)
         draw.line((330,220,360,220), fill=0, width=1)
-        draw.line((120,0,360,0), fill=0, width=2)
-        draw.line((120,238,360,238), fill=0, width=2)
-        draw.line((358,0,358,240), fill=0, width=2)
+
         ## 绘制总览和实况
         draw.text((122, 5),data['today'][:6], font = font25, fill = 0)  #日期
         draw.text((240, 5),data['today'][10:12], font = font25, fill = 0)   #周几
