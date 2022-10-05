@@ -149,6 +149,7 @@ try:
 
         ## 绘制图框
         draw.line((358,0,358,240), fill=0, width=2) #图片有可能覆盖，补一条线
+        draw.line((0,238,360,238), fill=0, width=2) #图片有可能覆盖，补一条线
         draw.rectangle((320,32, 357,237), fill = 255, outline=0, width=1)
         draw.line((120,32,320,32), fill=0, width=1)
         draw.line((320,100,360,100), fill=0, width=1)
