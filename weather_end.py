@@ -73,7 +73,7 @@ try:
         list_clearfix_weather = html.xpath('//*[@class="clearfix"]/li/p[1]/text()')[0:2]
         list_clearfix_temp = html.xpath('//*[@class="clearfix"]/li/p[2]/span/text()')
         
-        list_s = html.xpath('//script/text()')[0][22:-4]  # 获取天气数据列表/ul/li *[@id="today"]/div
+        list_s = html.xpath('//script/text()')[2][23:-4]  # 获取天气数据列表/ul/li *[@id="today"]/div
         list_t = list_s.split('","')[:8]
         list_a ,list_date, list_tem, list_weather, list_wind= [], [], [], [], []
         for i in range(8):
@@ -232,6 +232,8 @@ try:
             url = 'http://www.weather.com.cn/weather1d/101210101.shtml'
             data = get_data(url)
             draw_weather_icon(data)
+        else:
+            print('没有网络\n')
         
     if __name__ == '__main__':
         main()
