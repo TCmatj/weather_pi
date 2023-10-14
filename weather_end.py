@@ -1,6 +1,14 @@
 import os
+os.chdir(os.path.dirname(__file__))#切换为工作目录为当前文件所在的目录
 import sys
 import socket
+sys.path.append('/home/pi/.local/lib/python3.9/site-packages')# https://blog.csdn.net/zkk9527/article/details/111353428 开机启动遇到的问题
+sys.path.append('/usr/lib/python3.9/dist-packages')
+import chardet
+import requests
+from lxml import etree
+from fake_useragent import UserAgent
+import schedule
 picdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'pic')  # dirname去掉文件名，返回目录 获得你刚才所引用的模块所在的绝对路径
 libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
 if os.path.exists(libdir):
@@ -29,19 +37,14 @@ epd = epd3in52.EPD()
 
 try:
     logging.info("天气")
-    
-    import chardet
-    import requests
-    from lxml import etree
-    from fake_useragent import UserAgent
-    import schedule
 
     # 随机产生请求头
     ua = UserAgent(verify_ssl=False)
     # 随机切换请求头
     def random_ua():
         headers = {
-            "user-agent": ua.random
+            "user-agent": ua.random,
+            "Connection": "close"   # https://blog.csdn.net/qq_36853469/article/details/106835282 问题
         }
         return headers
 
@@ -215,6 +218,7 @@ try:
 
 
     def isNetOK(testserver):
+        """"判断网络是否联通"""
         s = socket.socket()
         s.settimeout(3)
         try:
@@ -227,17 +231,27 @@ try:
         except Exception as e:
             return False
 
+    def netOK():
+        """尝试版本"""
+        ret = os.system("ping baidu.com -n 1")
+        return True if ret == 0 else False
+ 
+
     def main():
-        if isNetOK(testserver=('www.baidu.com', 443)):
+        if isNetOK(testserver=('www.baidu.com', 443)) or isNetOK(testserver=('www.bilibili.com', 443)):
             url = 'http://www.weather.com.cn/weather1d/101210101.shtml'
             data = get_data(url)
             draw_weather_icon(data)
         else:
-            print('没有网络\n')
+            logging.info('没有网络')
+            logging.info("Clear...")
+            epd.Clear()
+            logging.info("Goto Sleep...")
+            epd.sleep()
         
     if __name__ == '__main__':
         main()
-        schedule.every(1).minutes.do(main)     # 每隔30minutes执行一次
+        schedule.every(1).minutes.do(main)     # 每隔1minutes执行一次
 
         while True:
             schedule.run_pending()  # run_pending：运行所有可以运行的任务 
