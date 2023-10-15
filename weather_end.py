@@ -18,6 +18,7 @@ import logging
 from waveshare_epd import epd3in52
 import time
 from PIL import Image,ImageDraw,ImageFont
+from requests.adapters import HTTPAdapter
 
 logging.basicConfig(level=logging.DEBUG, format = '%(asctime)s - %(levelname)s - %(message)s') # debug消息级别
 
@@ -57,10 +58,16 @@ try:
 
     # 解析页面
     def res_text(url='http://www.weather.com.cn/weather1d/101210101.shtml'):
-        res = requests.get(url=url, headers=random_ua(), timeout=10)
-        res.encoding = chardet.detect(res.content)['encoding']  # 获取编码
-        response = res.text
-        html = etree.HTML(response) # 解析字符串格式的HTML文档对象
+        # https://www.cnblogs.com/suguangti/p/11950185.html 超时重连机制
+        s = requests.Session()
+        s.mount('http://', HTTPAdapter(max_retries=3))  # 重连三次
+        try:
+            res = s.get(url=url, headers=random_ua(), timeout=10)
+            res.encoding = chardet.detect(res.content)['encoding']  # 获取编码
+            response = res.text
+            html = etree.HTML(response) # 解析字符串格式的HTML文档对象
+        except requests.exceptions.RequestException as e:
+            logging.info(e)
         return html
 
 
