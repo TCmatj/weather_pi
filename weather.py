@@ -19,6 +19,9 @@ from waveshare_epd import epd3in52
 import time
 from PIL import Image,ImageDraw,ImageFont
 from requests.adapters import HTTPAdapter
+import json
+from geoip2.database import Reader
+
 
 logging.basicConfig(level=logging.DEBUG, format = '%(asctime)s - %(levelname)s - %(message)s') # debug消息级别
 
@@ -50,9 +53,19 @@ try:
         return headers
 
 
-    def city_num(city="杭州"):
-        dict_cty = {"杭州":"101210101"}
-        return dict_cty[city]
+    def city_num(city=""):
+        if city == "":
+            ip = requests.get('http://ifconfig.me/ip', timeout=10).text.strip()
+            reader = Reader('GeoLite2-City.mmdb')
+            response = reader.city(ip)
+            city = response.city.names["zh-CN"]
+        
+        with open("city_id.json") as f:
+            dict_city = json.load(f)
+        
+        if dict_city.get(city) is None:
+             return dict_city["杭州"]
+        return dict_city[city]
 
 
     # 解析页面
@@ -65,9 +78,9 @@ try:
             res.encoding = chardet.detect(res.content)['encoding']  # 获取编码
             response = res.text
             html = etree.HTML(response) # 解析字符串格式的HTML文档对象
+            return html
         except requests.exceptions.RequestException as e:
             logging.info(e)
-        return html
 
 
     # 获取今天的天气情况
@@ -243,9 +256,9 @@ try:
         return True if ret == 0 else False
  
 
-    def main():
+    def main(city_id):
         if isNetOK(testserver=('www.baidu.com', 443)) or isNetOK(testserver=('www.bilibili.com', 443)):
-            url = 'http://www.weather.com.cn/weather1d/' + city_num() +'.shtml'
+            url = 'http://www.weather.com.cn/weather1d/' + city_id +'.shtml'
             data = get_data(url)
             draw_weather_icon(data)
         else:
@@ -256,17 +269,12 @@ try:
             epd.sleep()
         
     if __name__ == '__main__':
-        main()
-        schedule.every(1).minutes.do(main)     # 每隔1minutes执行一次
+        city_id = city_num("杭州")
+        main(city_id)
+        schedule.every(1).minutes.do(main,city_id)     # 每隔1minutes执行一次
 
         while True:
             schedule.run_pending()  # run_pending：运行所有可以运行的任务 
-       
-    logging.info("Clear...")
-    epd.Clear()
-    
-    logging.info("Goto Sleep...")
-    epd.sleep()
     
 except IOError as e:  
     logging.info(e)
