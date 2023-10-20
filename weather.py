@@ -53,18 +53,23 @@ try:
         return headers
 
 
-    def city_num(city=""):
-        if city == "":
-            ip = requests.get('http://ifconfig.me/ip', timeout=10).text.strip()
-            reader = Reader('GeoLite2-City.mmdb')
-            response = reader.city(ip)
-            city = response.city.names["zh-CN"]
-        
+    def city_num(city):
         with open("city_id.json") as f:
             dict_city = json.load(f)
         
         if dict_city.get(city) is None:
-             return dict_city["杭州"]
+            ip = requests.get('http://ifconfig.me/ip', timeout=10).text.strip()
+            reader = Reader('GeoLite2-City.mmdb')
+            response = reader.city(ip)
+            city = response.city
+            try:
+                city = city.names["zh-CN"]
+            except KeyError:
+                city = "无锡"
+            logging.info(city)
+            return dict_city[city]
+        
+        logging.info(city)
         return dict_city[city]
 
 
@@ -269,12 +274,17 @@ try:
             epd.sleep()
         
     if __name__ == '__main__':
-        city_id = city_num("杭州")
-        main(city_id)
-        schedule.every(1).minutes.do(main,city_id)     # 每隔1minutes执行一次
+        with open('city_name.json', encoding='utf-8') as f:
+            try:
+                city_name = json.load(f)
+            except json.JSONDecodeError:
+                city_name = "无锡"
+            city_id = city_num(city_name)
+            main(city_id)
+            schedule.every(1).minutes.do(main,city_id)     # 每隔1minutes执行一次
 
-        while True:
-            schedule.run_pending()  # run_pending：运行所有可以运行的任务 
+        # while True:
+        #     schedule.run_pending()  # run_pending：运行所有可以运行的任务 
     
 except IOError as e:  
     logging.info(e)
