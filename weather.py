@@ -90,34 +90,39 @@ try:
 
     # 获取今天的天气情况
     def get_data(url):
-        html = res_text(url)
-        list_sunDown = html.xpath('//*[@class="sun sunDown"]/span/text()')[0][-5:]   # 日落时间
-        list_sunUp = html.xpath('//*[@class="sun sunUp"]/span/text()')[0][-5:]   # 日出时间
-        list_today = html.xpath('//input[@id="hidden_title"]/@value')[0]    # 总览
-        list_lihot = html.xpath('//*[@class="li1 hot"]/span/text()')[0]    #紫外线指数
+        try:
+            html = res_text(url)
+            list_sunDown = html.xpath('//*[@class="sun sunDown"]/span/text()')[0][-5:]   # 日落时间
+            list_sunUp = html.xpath('//*[@class="sun sunUp"]/span/text()')[0][-5:]   # 日出时间
+            list_today = html.xpath('//input[@id="hidden_title"]/@value')[0]    # 总览
+            list_lihot = html.xpath('//*[@class="li1 hot"]/span/text()')[0]    #紫外线指数
 
-        list_clearfix = html.xpath('//*[@class="clearfix"]/li/h1/text()')
-        list_clearfix_weather = html.xpath('//*[@class="clearfix"]/li/p[1]/text()')[0:2]
-        list_clearfix_temp = html.xpath('//*[@class="clearfix"]/li/p[2]/span/text()')
-        
-        list_s = html.xpath('//script/text()')[2][23:-4]  # 获取天气数据列表/ul/li *[@id="today"]/div
-        list_t = list_s.split('","')[:8]
-        list_a ,list_date, list_tem, list_weather, list_wind= [], [], [], [], []
-        for i in range(8):
-            list_a.append(list_t[i].split(','))
+            list_clearfix = html.xpath('//*[@class="clearfix"]/li/h1/text()')
+            list_clearfix_weather = html.xpath('//*[@class="clearfix"]/li/p[1]/text()')[0:2]
+            list_clearfix_temp = html.xpath('//*[@class="clearfix"]/li/p[2]/span/text()')
+            
+            list_s = html.xpath('//script/text()')[2][23:-4]  # 获取天气数据列表/ul/li *[@id="today"]/div
+            list_t = list_s.split('","')[:8]
+            list_a ,list_date, list_tem, list_weather, list_wind= [], [], [], [], []
+            for i in range(8):
+                list_a.append(list_t[i].split(','))
 
-            list_date.append(list_a[i][0][-3:-1])  # 获取时间
-            list_tem.append(list_a[i][3]) # 获取气温
-            list_weather.append(list_a[i][2])  # 获取天气情况，如：小雨转雨夹雪
-            list_wind.append(list_a[i][5])
+                list_date.append(list_a[i][0][-3:-1])  # 获取时间
+                list_tem.append(list_a[i][3]) # 获取气温
+                list_weather.append(list_a[i][2])  # 获取天气情况，如：小雨转雨夹雪
+                list_wind.append(list_a[i][5])
 
-        excel = {"time":list_date, "weather":list_weather, "temp":list_tem, "wind":list_wind, 
-                 'sundown':list_sunDown, 'sunup':list_sunUp, 'today':list_today, 'lihot':list_lihot,
-                 'text':list_clearfix, 'text_weather':list_clearfix_weather, 'text_temp':list_clearfix_temp}
-        return excel
+            excel = {"time":list_date, "weather":list_weather, "temp":list_tem, "wind":list_wind, 
+                    'sundown':list_sunDown, 'sunup':list_sunUp, 'today':list_today, 'lihot':list_lihot,
+                    'text':list_clearfix, 'text_weather':list_clearfix_weather, 'text_temp':list_clearfix_temp}
+            return excel
+        except AttributeError:
+            logging.info(html)
 
 
     def draw_weather_icon(data):
+        if data is None:
+            return
         logging.info("init and Clear")
         epd.init()  # 墨水屏初始化，再屏幕开始工作时和退出睡眠模式之后调用
         epd.display_NUM(epd.WHITE)
@@ -145,24 +150,27 @@ try:
         draw.line((0,240,120,240),width=1)
         draw.line((60,0,60,240),width=1)
         draw.line((120,0,120,240),width=1)
-        for weather in data['weather']:
-            if int(data['time'][i])>18 and (data['weather'][i] in ['晴','多云','少云','晴间多云']):
-                weather_id = weather_iconnum_night.get(weather)
-            else:
-                weather_id = weather_iconnum.get(weather)
-            path =  'icons_bmp/' + str(weather_id) + '.bmp'
-            drawimg = Image.open(path)
+        try:
+            for weather in data['weather']:
+                if int(data['time'][i])>18 and (data['weather'][i] in ['晴','多云','少云','晴间多云']):
+                    weather_id = weather_iconnum_night.get(weather)
+                else:
+                    weather_id = weather_iconnum.get(weather)
+                path =  'icons_bmp/' + str(weather_id) + '.bmp'
+                drawimg = Image.open(path)
 
-            ## 绘制图标和文字
-            Himage.paste(drawimg,(8+14+60*(i%2),5+int(i/2)*60))
-            draw.text((2+(i%2)*60, 2+int(i/2)*60),'Time', font = font8, fill = 0)
-            draw.text((2+(i%2)*60, 8+int(i/2)*60), data['time'][i], font = font15, fill = 0)
-            draw.text((2+(i%2)*60, 40+int(i/2)*60), data['temp'][i], font = font15, fill = 0)
-            draw.text((18+(i%2)*60, 40+int(i/2)*60), u'°C', font = font15, fill = 0)
-            draw.text((40+(i%2)*60, 40+int(i/2)*60),'Wind', font = font8, fill = 0)
-            draw.text((35+(i%2)*60, 48+int(i/2)*60), data['wind'][i], font = font10, fill = 0)
-            
-            i = i + 1
+                ## 绘制图标和文字
+                Himage.paste(drawimg,(8+14+60*(i%2),5+int(i/2)*60))
+                draw.text((2+(i%2)*60, 2+int(i/2)*60),'Time', font = font8, fill = 0)
+                draw.text((2+(i%2)*60, 8+int(i/2)*60), data['time'][i], font = font15, fill = 0)
+                draw.text((2+(i%2)*60, 40+int(i/2)*60), data['temp'][i], font = font15, fill = 0)
+                draw.text((18+(i%2)*60, 40+int(i/2)*60), u'°C', font = font15, fill = 0)
+                draw.text((40+(i%2)*60, 40+int(i/2)*60),'Wind', font = font8, fill = 0)
+                draw.text((35+(i%2)*60, 48+int(i/2)*60), data['wind'][i], font = font10, fill = 0)
+                
+                i = i + 1
+        except TypeError:
+            logging.info(data)
 
         ## 绘制图片
         import random
@@ -283,8 +291,8 @@ try:
             main(city_id)
             schedule.every(1).minutes.do(main,city_id)     # 每隔1minutes执行一次
 
-        # while True:
-        #     schedule.run_pending()  # run_pending：运行所有可以运行的任务 
+        while True:
+            schedule.run_pending()  # run_pending：运行所有可以运行的任务 
     
 except IOError as e:  
     logging.info(e)
